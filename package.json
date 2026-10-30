@@ -1,0 +1,22 @@
+{
+  "name": "falesia-vento-cfd",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "cfd": "cd cfd && python lbm_falesia.py",
+    "cfd:fino": "cd cfd && python lbm_falesia.py --fino",
+    "figuras": "cd cfd && python figuras.py",
+    "modelos": "\"C:/Program Files/Blender Foundation/Blender 4.5/blender.exe\" -b --python blender/gerar_modelos.py -- public/models"
+  },
+  "dependencies": {
+    "lil-gui": "^0.20.0",
+    "three": "^0.170.0"
+  },
+  "devDependencies": {
+    "vite": "^5.4.10"
+  }
+}

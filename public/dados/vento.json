@@ -1,0 +1,37 @@
+{
+ "descricao": "vento 2D LBM-LES sobre a falesia; ver README",
+ "dx": 1.0,
+ "medio": {
+  "nx": 600,
+  "nz": 240,
+  "s0": -250.0,
+  "z0": 0.0,
+  "canais": [
+   "u",
+   "w",
+   "Cp",
+   "k"
+  ]
+ },
+ "rajadas": {
+  "nx": 210,
+  "nz": 75,
+  "nt": 128,
+  "s0": -45.0,
+  "z0": 0.0,
+  "dtQuadro": 0.15227566843136156,
+  "canais": [
+   "u",
+   "w"
+  ]
+ },
+ "uRef": 10.0,
+ "zRef": 10.0,
+ "alfa": 0.11,
+ "alturaFalesia": 30.0,
+ "dt": 0.006344819517973398,
+ "passos": 30260,
+ "tempoSimulado": 191.99423861387504,
+ "cs": 0.17,
+ "reRede": 20000.0
+}

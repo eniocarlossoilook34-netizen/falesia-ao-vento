@@ -1,0 +1,10 @@
+node_modules
+dist
+cfd/resultado.npz
+cfd/__pycache__
+cfd/log_*.txt
+cfd/verificacao/*.npz
+
+# imagem de referência (obra de terceiros, não redistribuir)
+Referencia.jpeg
+.claude/

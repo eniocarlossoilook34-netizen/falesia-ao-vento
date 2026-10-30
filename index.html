@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Falésia ao vento — arte e CFD</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <canvas id="cena"></canvas>
+    <div id="carregando"><span>calculando o vento…</span></div>
+
+    <div id="ui">
+      <header>
+        <h1>Falésia ao vento</h1>
+        <p>vento calculado por CFD (Lattice Boltzmann + LES)</p>
+      </header>
+      <nav id="modos">
+        <button data-modo="artístico" class="ativo">artístico</button>
+        <button data-modo="científico">científico</button>
+      </nav>
+      <p id="dica">C alterna o modo · H oculta a interface · P salva foto</p>
+    </div>
+
+    <aside id="painel-cientifico">
+      <h2>Corte vertical da falésia</h2>
+      <div class="escala"></div>
+      <div class="estacoes"></div>
+      <canvas></canvas>
+      <p class="legenda">linha cheia: média temporal · tracejada: instantâneo</p>
+      <div class="numeros"></div>
+    </aside>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

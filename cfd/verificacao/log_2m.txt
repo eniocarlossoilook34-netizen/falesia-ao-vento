@@ -1,0 +1,15 @@
+grade 300 x 120 (dx = 2.0 m), dt = 12.69 ms, τ0 = 0.50014, Re_rede = 20000, células fluidas = 32902
+aquecimento 7565 passos, média 15130 passos, quadros a cada 12 passos
+  passo      0/22695  t =    0.0 s  |u|max =  14.2 m/s  (    7 s, 6970.4 ms/passo)
+  passo   2000/22695  t =   25.4 s  |u|max =  17.3 m/s  (   40 s, 19.9 ms/passo)
+  passo   4000/22695  t =   50.8 s  |u|max =  16.9 m/s  (   62 s, 15.4 ms/passo)
+  passo   6000/22695  t =   76.1 s  |u|max =  18.5 m/s  (   79 s, 13.1 ms/passo)
+  passo   8000/22695  t =  101.5 s  |u|max =  16.2 m/s  (   96 s, 12.0 ms/passo)
+  passo  10000/22695  t =  126.9 s  |u|max =  17.0 m/s  (  117 s, 11.7 ms/passo)
+  passo  12000/22695  t =  152.3 s  |u|max =  17.2 m/s  (  137 s, 11.4 ms/passo)
+  passo  14000/22695  t =  177.7 s  |u|max =  17.0 m/s  (  155 s, 11.1 ms/passo)
+  passo  16000/22695  t =  203.0 s  |u|max =  16.5 m/s  (  174 s, 10.8 ms/passo)
+  passo  18000/22695  t =  228.4 s  |u|max =  17.5 m/s  (  192 s, 10.7 ms/passo)
+  passo  20000/22695  t =  253.8 s  |u|max =  16.9 m/s  (  210 s, 10.5 ms/passo)
+  passo  22000/22695  t =  279.2 s  |u|max =  17.3 m/s  (  227 s, 10.3 ms/passo)
+pronto em 233 s; campos em verificacao/malha_2m.npz

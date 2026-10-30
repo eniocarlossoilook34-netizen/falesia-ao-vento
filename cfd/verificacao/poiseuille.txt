@@ -1,0 +1,5 @@
+Re=8.37
+umax_ratio=0.99871
+erro_rms=0.00079
+dpdx_ratio=1.03510
+var_Q=5.387e-13

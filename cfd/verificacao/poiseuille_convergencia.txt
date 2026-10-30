@@ -1,0 +1,4 @@
+h=11: erro dp/dx = 12.073%
+h=22: erro dp/dx = 3.510%
+h=44: erro dp/dx = 0.995%
+ordem observada = 1.80
