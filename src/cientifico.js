@@ -245,9 +245,9 @@ function desenharPerfis(canvas, t, fator) {
   const H = canvas.height;
   const dpr = W / canvas.clientWidth;
   c.clearRect(0, 0, W, H);
-  const m = { l: 30 * dpr, r: 10 * dpr, t: 8 * dpr, b: 30 * dpr };
+  const m = { l: 46 * dpr, r: 12 * dpr, t: 8 * dpr, b: 30 * dpr };
   const uMin = -4;
-  const uMax = 18;
+  const uMax = Math.ceil((16 * fator) / 4) * 4;
   const zMax = 40;
   const X = (u) => m.l + ((u - uMin) / (uMax - uMin)) * (W - m.l - m.r);
   const Y = (z) => H - m.b - (z / zMax) * (H - m.t - m.b);
@@ -261,10 +261,12 @@ function desenharPerfis(canvas, t, fator) {
   }
   for (let z = 0; z <= zMax; z += 10) {
     c.beginPath(); c.moveTo(X(uMin), Y(z)); c.lineTo(X(uMax), Y(z)); c.stroke();
-    c.fillText(String(z), 8 * dpr, Y(z) + 4 * dpr);
+    c.textAlign = 'right'; c.fillText(String(z), m.l - 6 * dpr, Y(z) + 4 * dpr); c.textAlign = 'left';
   }
-  c.fillText('u (m/s)', W - 48 * dpr, H - m.b - 6 * dpr);
-  c.save(); c.translate(11 * dpr, H - m.b - 4 * dpr); c.rotate(-Math.PI / 2); c.fillText('z acima do chão (m)', 0, 0); c.restore();
+  c.textAlign = 'right';
+  c.fillText('u (m/s)', W - m.r, H - 2 * dpr);
+  c.textAlign = 'left';
+  c.save(); c.translate(11 * dpr, H - m.b - 2 * dpr); c.rotate(-Math.PI / 2); c.fillText('z acima do chão (m)', 0, 0); c.restore();
   for (const e of ESTACOES) {
     const chao = Math.max(alturaPerfil(e.s), 0);
     for (const [inst, traco] of [[false, []], [true, [4 * dpr, 3 * dpr]]]) {
@@ -346,15 +348,18 @@ export function criarCientifico(scene, uniformsVento) {
     <div><b>${ind.cpMin.toFixed(2)}</b><span>Cp mínimo a 2–15 m do chão (sucção na borda)</span></div>`;
 
   const params = { grandeza: '|U| (m/s)', linhas: true, vetores: true, particulas: true, opacidade: 0.88 };
+  let fatorAtual = 1;
+  // a escala de cor acompanha a escala de vento (velocidades ∝ fator, k ∝ fator², Cp não muda)
+  const faixa = (g) => FAIXAS[g].map((v) => Math.round(v * (g <= 2 ? fatorAtual : g === 4 ? fatorAtual ** 2 : 1) * 10) / 10);
   function aplicar() {
     const g = GRANDEZAS[params.grandeza];
     plano.uniforms.uGrandeza.value = g;
-    plano.uniforms.uFaixa.value.set(...FAIXAS[g]);
+    plano.uniforms.uFaixa.value.set(...faixa(g));
     plano.uniforms.uOpacidade.value = params.opacidade;
     linhas.visible = params.linhas;
     vetores.objeto.visible = params.vetores;
     particulas.objeto.visible = params.particulas;
-    const [a, b] = FAIXAS[g];
+    const [a, b] = faixa(g);
     painel.querySelector('.escala').innerHTML = `<span>${a}</span><i class="${g === 2 || g === 3 ? 'div' : 'turbo'}"></i><span>${b}</span><em>${params.grandeza}</em>`;
   }
   aplicar();
@@ -364,7 +369,12 @@ export function criarCientifico(scene, uniformsVento) {
     grupo,
     params,
     aplicar,
+    faixa: () => faixa(GRANDEZAS[params.grandeza]),
     atualizar(t, dt, fator) {
+      if (fator !== fatorAtual) {
+        fatorAtual = fator;
+        aplicar();
+      }
       if (!grupo.visible) return;
       vetores.atualizar(t, fator);
       particulas.atualizar(t, dt, fator);

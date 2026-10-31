@@ -8,3 +8,6 @@ cfd/verificacao/*.npz
 # imagem de referência (obra de terceiros, não redistribuir)
 Referencia.jpeg
 .claude/
+video/quadros/
+video/previa_*.jpg
+video/*.mp4

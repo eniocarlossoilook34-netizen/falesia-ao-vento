@@ -10,7 +10,8 @@
     "cfd": "cd cfd && python lbm_falesia.py",
     "cfd:fino": "cd cfd && python lbm_falesia.py --fino",
     "figuras": "cd cfd && python figuras.py",
-    "modelos": "\"C:/Program Files/Blender Foundation/Blender 4.5/blender.exe\" -b --python blender/gerar_modelos.py -- public/models"
+    "modelos": "\"C:/Program Files/Blender Foundation/Blender 4.5/blender.exe\" -b --python blender/gerar_modelos.py -- public/models",
+    "video": "python video/gravar.py"
   },
   "dependencies": {
     "lil-gui": "^0.20.0",

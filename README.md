@@ -55,6 +55,15 @@ python verificacao_falesia.py                     # malha, estatística, massa, 
 
 Requisitos do Python: `numpy`, `numba` e `matplotlib`.
 
+### Vídeo de divulgação
+
+```bash
+npm run dev          # deixe rodando
+npm run video        # 22 s, 1080 x 1350, 30 fps -> video/falesia_ao_vento.mp4
+```
+
+[video/gravar.py](video/gravar.py) abre a cena no Microsoft Edge (Playwright) em modo `?gravar`. Nesse modo o tempo avança exatamente 1/30 s por quadro e a câmera segue o roteiro de [src/gravacao.js](src/gravacao.js), então o vídeo sai liso mesmo numa GPU integrada. O MP4 é montado pelo editor de vídeo do Blender, que já traz o ffmpeg. Requer `playwright` no Python.
+
 ## Arquitetura: por que CFD offline + tempo real
 
 | caminho | prós | contras |

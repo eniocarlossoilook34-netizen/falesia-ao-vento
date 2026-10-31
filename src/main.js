@@ -201,7 +201,7 @@ function voarPara(v) {
   voo = { de: { pos: camera.position.clone(), alvo: controls.target.clone() }, para: v, t: 0 };
 }
 
-function definirModo(modo) {
+function definirModo(modo, { voar = true } = {}) {
   params.modo = modo;
   const ehCient = modo === 'científico';
   grama.uniforms.uCientifico.value = ehCient ? 1 : 0;
@@ -209,7 +209,7 @@ function definirModo(modo) {
   terreno.material.clippingPlanes = ehCient ? [planoCorte] : [];
   terreno.material.needsUpdate = true;
   cient.grupo.visible = ehCient;
-  voarPara(ehCient ? vistaCorte() : vistaArtistica());
+  if (voar) voarPara(ehCient ? vistaCorte() : vistaArtistica());
   document.body.classList.toggle('cientifico', ehCient);
   document.querySelectorAll('#modos button').forEach((b) => b.classList.toggle('ativo', b.dataset.modo === modo));
 }
@@ -249,8 +249,8 @@ const relogio = new THREE.Clock();
 let t = 0;
 document.getElementById('carregando').classList.add('oculto');
 
-renderer.setAnimationLoop(() => {
-  const dt = Math.min(relogio.getDelta(), 0.1);
+/** Avança a simulação dt segundos e desenha um quadro. */
+function passo(dt) {
   t += dt;
   const uv = vento.uniforms;
   uv.uFatorVento.value = params.fatorVento;
@@ -274,7 +274,18 @@ renderer.setAnimationLoop(() => {
   controls.update();
   compositor.renderizar(renderer, camera);
   renderer.render(scene, camera);
-});
+}
+
+if (parametrosURL.has('gravar')) {
+  // modo de gravação: tempo fixo por quadro, câmera pelo roteiro (src/gravacao.js)
+  const { criarGravacao } = await import('./gravacao.js');
+  window.__gravacao = criarGravacao({
+    THREE, renderer, camera, controls, cient, posCiclista, paraOMar, X_PLANO, centroEstrada, X_CICLISTA,
+    alturaTerreno, definirModo, passo, canvas,
+  });
+} else {
+  renderer.setAnimationLoop(() => passo(Math.min(relogio.getDelta(), 0.1)));
+}
 
 // para depuração no console
 Object.assign(window, { THREE, scene, camera, controls, params, vento, posCiclista, ventoCorteCPU, ventoMundoCPU, coordCorte });
