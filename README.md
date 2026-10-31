@@ -2,6 +2,8 @@
 
 Uma bicicleta estacionada no alto de uma falésia gramada, de frente para o mar. O **vento que move a cena é calculado** por uma simulação de dinâmica dos fluidos computacional (CFD). Grama, flores e nuvens se movem com esse campo de velocidade. Um **modo científico** mostra o mesmo escoamento como engenharia: corte vertical, mapas de cor, linhas de corrente, vetores e perfis de velocidade.
 
+Vídeo de 22 s: [video/falesia_ao_vento.mp4](video/falesia_ao_vento.mp4)
+
 | artístico | científico |
 | --- | --- |
 | ![modo artístico](docs/capturas/01_artistico.jpg) | ![modo científico](docs/capturas/03_cientifico.jpg) |
